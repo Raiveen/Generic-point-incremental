@@ -3,7 +3,7 @@
 //----------------------==========================-----------------------
 
 var player = {
-    points: 1000,
+    points: 10000,
     prestige: 0,
     prestigerewards: [0, 0]
 };
@@ -20,14 +20,18 @@ function format(value) {
 }
 
 function update() {
+
+    price = 10 * Math.pow(1.75, 2.5*Math.pow(player.prestige, 1.5))
     document.getElementById("points").innerHTML = format(player.points) + " points";
     document.getElementById("prestigecount").innerHTML = "Prestige: " + player.prestige;
     document.getElementById("prestige").innerHTML = "Prestige<br>Req: "+format(price)+" points";
 
-    if (player.prestigerewards[0] == 1) {document.getElementById("jedna").style.display = "inline"
+    if (player.prestigerewards[0] == 1) document.getElementById("prestigerewards").style.display = "block";
+
+    if (player.prestigerewards[0] == 1) {document.getElementById("jedna").style.display = "block"
      document.getElementById("jedna").style.backgroundColor = "green";}
-     if (player.prestigerewards[1] == 1) {document.getElementById("dva").style.display = "inline"
-     document.getElementById("jedna").style.backgroundColor = "green";}
+    if (player.prestigerewards[1] == 1) {document.getElementById("dva").style.display = "block"
+     document.getElementById("dva").style.backgroundColor = "green";}
 }
 
 //----------------------==========================-----------------------
@@ -49,14 +53,16 @@ var mainGameLoop = window.setInterval(function() {
 //----------------------==========================-----------------------
 var price = 10
 function prestige() {
-    price = 10 * Math.pow(1.75, 2.5*Math.pow(player.prestige+1, 1.5))
+    price = 10 * Math.pow(1.75, 2.5*Math.pow(player.prestige, 1.5))
     if (player.points >= price) {
         player.points -= price;
         player.prestige++;
     }
-    if (player.prestige >= 1) player.prestigerewards[0] = 1;
-    if (player.prestige >= 2) player.prestigerewards[0] = 1;
     update()
+    if (player.prestige >= 1) player.prestigerewards[0] = 1;
+    if (player.prestige >= 2) player.prestigerewards[1] = 1;
+    
+    
 }   
 
 //----------------------==========================-----------------------
@@ -64,7 +70,7 @@ function prestige() {
 //----------------------==========================-----------------------
 
 function clearData() {
-    localStorage.removeItem("testsave");
+    localStorage.removeItem("save2");
     player = {
         points: 0,
         prestige: 0,
@@ -78,7 +84,7 @@ function saveGame() {
     var data = {
         player: player,
     };
-    localStorage.setItem("testsave", JSON.stringify(data));
+    localStorage.setItem("save2", JSON.stringify(data));
 }
 
 var saveGameLoop = window.setInterval(function() {
@@ -86,7 +92,7 @@ var saveGameLoop = window.setInterval(function() {
 }, 1000);
 
 function loadSaveGame() {
-    var savedData = JSON.parse(localStorage.getItem("testsave"));
+    var savedData = JSON.parse(localStorage.getItem("save2"));
     if (savedData !== null) {
         player = savedData.player !== undefined ? savedData.player : player;
     }

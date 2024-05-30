@@ -29,24 +29,30 @@ button:hover {
     bottom: 0;
 }
 
-td {
+tr {
     display: none;
+    text-align: center;
 }
 
-tbody, td {
+#prestigerewards {
+    display: none;
     position: fixed;
     right: 0;
     top: 0;
 }
 
-td, tr {
-    font-size:larger;
+tr {
+    font-size:large;
     background-color: rgb(113, 113, 113);
-    border: 5px solid rgb(0, 0, 0);
+    border: 5px solid rgb(255, 255, 255);
     border-collapse: collapse;
-    height: 75px;
-    width: 600px;
+    height: 50px;
+    width: 400px;
+}
+td, #blabla {
+    text-align: center;
+    
 }
 td {
-    text-align: center;
+    width: 410px;
 }
