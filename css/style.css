@@ -56,3 +56,9 @@ td, #blabla {
 td {
     width: 410px;
 }
+
+#prestigeblock, #upgrade1 {
+    position: fixed;
+    top: 0px;
+    left: 8%;
+}

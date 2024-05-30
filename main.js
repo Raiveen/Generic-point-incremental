@@ -39,7 +39,8 @@ function update() {
 //----------------------==========================-----------------------
 
 function pointgain() {
-    let x = 0.01;
+    let x = 0.01
+    if (player.prestigerewards[0]) x *= 3;
     player.points += x;
     update();
 }
