@@ -58,17 +58,17 @@ td {
     width: 410px;
 }
 
-ul {
-    list-style: none;
-    position: absolute;
-    left: 5.8%;
-    top: 9%;
-}
-
 #prestigeblock {
     position: fixed;
     top: 0px;
     left: 7%;
+}
+
+#prestigeupg {
+    list-style: none;
+    position: absolute;
+    left: 5.4%;
+    top: 13%;
 }
 
 #upgrade1, #upgrade2 {
@@ -80,15 +80,15 @@ ul {
 #upg1eff {
     display: none;
     position: fixed;
-    left: 380px;
-    top: 140px;
+    left: 330px;
+    top: 145px;
 }
 
 #upg2eff {
     display: none;
     position: fixed;
-    left: 380px;
-    top: 198px;
+    left: 330px;
+    top: 203px;
 }
 
 #rebirth {
@@ -100,5 +100,5 @@ ul {
     display: none;
     position: fixed;
     top: 0px;
-    left: 23%;
+    left: 27%;
 }

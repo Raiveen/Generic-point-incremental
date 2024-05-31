@@ -31,14 +31,14 @@ function update() {
     upg1price = 20 + 20*player.upgrades[0]*Math.pow(5, 0.2*player.upgrades[0])
     upg2price = 50 + 50*player.upgrades[1]*Math.pow(5, 0.5*player.upgrades[1])
     document.getElementById("points").innerHTML = expo(player.points, 2) + " points";
-    document.getElementById("prestigecount").innerHTML = "Prestige: " + player.prestige;
+    document.getElementById("prestigecount").innerHTML = "Prestige: " + expo(player.prestige);
     document.getElementById("prestige").innerHTML = "Prestige<br>Req: "+expo(prestigeprice, 2)+" points";
     document.getElementById("upgrade1").innerHTML = "Upgrade 1<br>+1 to point gain<br>Cost: "+expo(upg1price, 2)+" points";
     document.getElementById("upgrade2").innerHTML = "Upgrade 2<br>+1x to point gain<br>Cost: "+expo(upg2price, 2)+" points";
     if (player.prestigerewards[3]) document.getElementById("upg1eff").innerHTML = "+" +expo(player.upgrades[0]*prestige3boost, 2)+ " to point gain";
-    else document.getElementById("upg1eff").innerHTML = "+" +player.upgrades[0]+ " to point gain";
+    else document.getElementById("upg1eff").innerHTML = "+" +expo(player.upgrades[0], 2)+ " to point gain";
     if (player.prestigerewards[4]) document.getElementById("upg2eff").innerHTML = "+" +Math.pow(player.upgrades[1], 2)+ "x to point gain";
-    else document.getElementById("upg2eff").innerHTML = "+" +player.upgrades[1]+ "x to point gain";
+    else document.getElementById("upg2eff").innerHTML = "+" +expo(player.upgrades[1], 2)+ "x to point gain";
     document.getElementById("prestige3boost").innerHTML = "Prestige 3<br>Points boost themselves: "+expo(prestige3boost, 2)+"x";
 
     if (player.prestigerewards[0] == 1) document.getElementById("prestigerewards").style.display = "block";
@@ -85,6 +85,7 @@ function pointgain() {
     }
     
     if (player.prestigerewards[0]) x *= 3;
+    if (player.prestigerewards[6]) x *= 4;
     if (player.prestigerewards[2]) x *= Math.log10(player.points+1)+1;
     document.getElementById("pointpersec").innerHTML = expo(x*100, 2)+"/sec";
     player.points += x;
