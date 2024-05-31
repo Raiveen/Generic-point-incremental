@@ -131,3 +131,9 @@ td {
     top: 12px;
     left: 165px;
 }
+
+#credits {
+    position: fixed;
+    right: 91px;
+    bottom: 0;
+}
