@@ -3,34 +3,42 @@
 //----------------------==========================-----------------------
 
 var player = {
-    points: 10000,
+    points: 1000000,
     prestige: 0,
-    prestigerewards: [0, 0]
+    prestigerewards: [0, 0],
+    upgrades: [0, 0],
 };
 
 //----------------------==========================-----------------------
 //----------------------==========UPDATING==========-----------------------
 //----------------------==========================-----------------------
 
-function format(value) {
-    return new Intl.NumberFormat('th-TH', { 
+function expo(x, f) {
+    if (x >= 100000) return Number.parseFloat(x).toExponential(f);
+    else { return new Intl.NumberFormat('th-TH', { 
         minimumFractionDigits: 2, 
         maximumFractionDigits: 2 
-    }).format(value);
-}
+    }).format(x); }
+  }
 
 function update() {
 
-    price = 10 * Math.pow(1.75, 2.5*Math.pow(player.prestige, 1.5))
-    document.getElementById("points").innerHTML = format(player.points) + " points";
+    prestigeprice = 10 * Math.pow(1.75, 2.5*Math.pow(player.prestige, 1.5))
+    upg1price = 20 + 20*player.upgrades[0]*Math.pow(5, 0.2*player.upgrades[0])
+    upg2price = 50+ 50*player.upgrades[1]*Math.pow(5, 0.5*player.upgrades[1])
+    document.getElementById("points").innerHTML = expo(player.points, 2) + " points";
     document.getElementById("prestigecount").innerHTML = "Prestige: " + player.prestige;
-    document.getElementById("prestige").innerHTML = "Prestige<br>Req: "+format(price)+" points";
+    document.getElementById("prestige").innerHTML = "Prestige<br>Req: "+expo(prestigeprice, 2)+" points";
+    document.getElementById("upgrade1").innerHTML = "Upgrade<br>+1 to point gain<br>Cost: "+expo(upg1price, 2)+" points";
+    document.getElementById("upgrade2").innerHTML = "Upgrade<br>+1x to point gain<br>Cost: "+expo(upg2price, 2)+" points";
 
     if (player.prestigerewards[0] == 1) document.getElementById("prestigerewards").style.display = "block";
 
     if (player.prestigerewards[0] == 1) {document.getElementById("jedna").style.display = "block"
      document.getElementById("jedna").style.backgroundColor = "green";}
     if (player.prestigerewards[1] == 1) {document.getElementById("dva").style.display = "block"
+    document.getElementById("upgrade1").style.display = "block"
+    document.getElementById("upgrade2").style.display = "block"
      document.getElementById("dva").style.backgroundColor = "green";}
 }
 
@@ -40,6 +48,8 @@ function update() {
 
 function pointgain() {
     let x = 0.01
+    x += player.upgrades[0] / 100
+    if (player.upgrades[1] >= 1) x *= player.upgrades[1]+1
     if (player.prestigerewards[0]) x *= 3;
     player.points += x;
     update();
@@ -50,13 +60,41 @@ var mainGameLoop = window.setInterval(function() {
 }, 10);
 
 //----------------------==========================-----------------------
+//----------------------==========UPGRADES==========-----------------------
+//----------------------==========================-----------------------
+var upg1price = 20
+function upgrade1() {
+    upg1price = 20 + 20*player.upgrades[0]*Math.pow(5, 0.2*player.upgrades[0])
+    if (player.points >= upg1price) {
+        player.points -= upg1price
+        player.upgrades[0]++;
+    }
+    update();
+}
+
+var upg2price = 50
+function upgrade2() {
+    upg2price = 50+ 50*player.upgrades[1]*Math.pow(5, 0.5*player.upgrades[1])
+    if (player.points >= upg2price) {
+        player.points -= upg2price
+        player.upgrades[1]++;
+    }
+    update();
+}
+
+//----------------------==========================-----------------------
 //----------------------==========RESET LAYERS==========-----------------------
 //----------------------==========================-----------------------
-var price = 10
+var prestigeprice = 10
 function prestige() {
-    price = 10 * Math.pow(1.75, 2.5*Math.pow(player.prestige, 1.5))
-    if (player.points >= price) {
-        player.points -= price;
+    prestigeprice = 10 * Math.pow(1.75, 2.5*Math.pow(player.prestige, 1.5))
+    if (player.points >= prestigeprice) {
+        player = {
+            points: 100000,
+            prestige: player.prestige,
+            prestigerewards: player.prestigerewards,
+            upgrades: [0, 0],
+        };
         player.prestige++;
     }
     update()
@@ -76,6 +114,7 @@ function clearData() {
         points: 0,
         prestige: 0,
         prestigerewards: [0, 0],
+        upgrades: [0, 0],
     };
     location.reload();
     update();

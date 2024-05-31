@@ -12,7 +12,12 @@
     <p id="prestigecount">Prestige: 0</p>
     <button onclick="prestige()" id="prestige">Prestige<br>Req: 10 points</button>
     </div>
-    <button onclick="upgrade1()" id="upgrade1">Upgrade<br>Upgrade button 1</button>
+    <ul>
+      <li><button onclick="upgrade1()" id="upgrade1">Upgrade<br>+1/sec to point gain<br>Cost: 20 points</button></li>
+      <p id="upg1eff">+0</p>
+      <li><button onclick="upgrade2()" id="upgrade2">Upgrade<br>+1x to point gain<br>Cost: 50 points</button></li>
+      <p id="upg2eff">0 points</p>
+    </ul>
 
     <div id="prestigerewards"><p id="blabla">Prestige rewards</p>
         <table>
@@ -20,7 +25,7 @@
             <td>Prestige 1<br>Triple point gain</td>
           </tr>
           <tr id="dva">
-            <td>Prestige 2<br>unlock placeholder</td>
+            <td>Prestige 2<br>Unlock 2 upgrades</td>
           </tr>
         </table>
       </div>
