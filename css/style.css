@@ -102,3 +102,32 @@ td {
     top: 0px;
     left: 27%;
 }
+
+#prestigestar {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 12px;
+    left: 20px;
+}
+#prestigestar2 {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 12px;
+    left: 154px;
+}
+#rebirthtriangle {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 12px;
+    left: 10px;
+}
+#rebirthtriangle2 {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 12px;
+    left: 165px;
+}

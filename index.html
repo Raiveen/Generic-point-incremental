@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game</title>
+    <title>Generic incremental game</title>
 </head>
 <body>
     <p id="points">0 points</p>
     <p id="pointpersec">0/sec</p>
     <div id="prestigeblock">
-    <p id="prestigecount">Prestige: 0</p>
+      <img id="prestigestar" src="image/prestigestar.png" alt="Prestige star image"><p id="prestigecount">Prestige: 0</p><img id="prestigestar2" src="image/prestigestar.png" alt="Prestige star image">
     <button onclick="prestige()" id="prestige">Prestige<br>Req: 10 points</button>
     </div>
     <ul id="prestigeupg">
@@ -20,7 +20,7 @@
       <p id="upg2eff">+0x</p>
     </ul>
     <div id="rebirthblock">
-    <p id="rebirthpoints">Rebirth points: 0</p>
+      <img id="rebirthtriangle" src="image/rebirthtriangle.png" alt="Rebirth triangle image"><p id="rebirthpoints">Rebirth points: 0</p><img id="rebirthtriangle2" src="image/rebirthtriangle.png" alt="Rebirth triangle image">
     <button onclick="rebirth()" id="rebirth">Rebirth<br>Req: 1e8 points<br>Gain: 0 rebirth points</button>
     </div>
     <div id="prestigerewards"><p id="blabla">Prestige rewards</p>
