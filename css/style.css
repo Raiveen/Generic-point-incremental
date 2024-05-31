@@ -16,7 +16,7 @@ div {
     width: fit-content;
 }
 
-#prestigecount {
+#prestigecount, #rebirthpoints {
     text-align: center;
 }
 
@@ -78,5 +78,27 @@ ul {
 }
 
 #upg1eff {
-    display: inline-block;
+    display: none;
+    position: fixed;
+    left: 380px;
+    top: 140px;
+}
+
+#upg2eff {
+    display: none;
+    position: fixed;
+    left: 380px;
+    top: 198px;
+}
+
+#rebirth {
+    width: 200px;
+    padding: 20px;
+}
+
+#rebirthblock {
+    display: none;
+    position: fixed;
+    top: 0px;
+    left: 23%;
 }
