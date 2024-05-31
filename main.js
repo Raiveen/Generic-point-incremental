@@ -25,7 +25,7 @@ function update() {
 
     prestigeprice = 10 * Math.pow(1.75, 2.5*Math.pow(player.prestige, 1.5))
     upg1price = 20 + 20*player.upgrades[0]*Math.pow(5, 0.2*player.upgrades[0])
-    upg2price = 50+ 50*player.upgrades[1]*Math.pow(5, 0.5*player.upgrades[1])
+    upg2price = 50 + 50*player.upgrades[1]*Math.pow(5, 0.5*player.upgrades[1])
     document.getElementById("points").innerHTML = expo(player.points, 2) + " points";
     document.getElementById("prestigecount").innerHTML = "Prestige: " + player.prestige;
     document.getElementById("prestige").innerHTML = "Prestige<br>Req: "+expo(prestigeprice, 2)+" points";
@@ -74,7 +74,7 @@ function upgrade1() {
 
 var upg2price = 50
 function upgrade2() {
-    upg2price = 50+ 50*player.upgrades[1]*Math.pow(5, 0.5*player.upgrades[1])
+    upg2price = 50 + 50*player.upgrades[1]*Math.pow(5, 0.5*player.upgrades[1])
     if (player.points >= upg2price) {
         player.points -= upg2price
         player.upgrades[1]++;
