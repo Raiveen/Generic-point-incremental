@@ -3,7 +3,7 @@
 //----------------------==========================-----------------------
 
 var player = {
-    points: 1000000,
+    points: 0,
     prestige: 0,
     prestigerewards: [0, 0],
     upgrades: [0, 0],
@@ -90,7 +90,7 @@ function prestige() {
     prestigeprice = 10 * Math.pow(1.75, 2.5*Math.pow(player.prestige, 1.5))
     if (player.points >= prestigeprice) {
         player = {
-            points: 100000,
+            points: 0,
             prestige: player.prestige,
             prestigerewards: player.prestigerewards,
             upgrades: [0, 0],
