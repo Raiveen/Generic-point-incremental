@@ -9,6 +9,7 @@ var player = {
     upgrades: [0, 0],
     rebirthpoins: 0,
     rebirthed: false,
+    rupgrades: [0, 0],
 };
 
 //----------------------==========================-----------------------
@@ -31,7 +32,7 @@ function update() {
     upg1price = 20 + 20*player.upgrades[0]*Math.pow(5, 0.2*player.upgrades[0])
     upg2price = 50 + 50*player.upgrades[1]*Math.pow(5, 0.5*player.upgrades[1])
     document.getElementById("points").innerHTML = expo(player.points, 2) + " points";
-    document.getElementById("prestigecount").innerHTML = "Prestige: " + expo(player.prestige);
+    document.getElementById("prestigecount").innerHTML = "Prestige: " + player.prestige;
     document.getElementById("prestige").innerHTML = "Prestige<br>Req: "+expo(prestigeprice, 2)+" points";
     document.getElementById("upgrade1").innerHTML = "Upgrade 1<br>+1 to point gain<br>Cost: "+expo(upg1price, 2)+" points";
     document.getElementById("upgrade2").innerHTML = "Upgrade 2<br>+1x to point gain<br>Cost: "+expo(upg2price, 2)+" points";
@@ -44,29 +45,38 @@ function update() {
     if (player.prestigerewards[0] == 1) document.getElementById("prestigerewards").style.display = "block";
 
     if (player.prestigerewards[0] == 1) {document.getElementById("jedna").style.display = "block"
-     document.getElementById("jedna").style.backgroundColor = "green";} else document.getElementById("jedna").style.display = "none"
+     document.getElementById("jedna").style.backgroundColor = "green";} else document.getElementById("jedna").style.backgroundColor = "#121212"
     if (player.prestigerewards[1] == 1) {document.getElementById("dva").style.display = "block"
     document.getElementById("upgrade1").style.display = "block"
     document.getElementById("upgrade2").style.display = "block"
     document.getElementById("upg1eff").style.display = "block"
     document.getElementById("upg2eff").style.display = "block"
-     document.getElementById("dva").style.backgroundColor = "green";} else document.getElementById("dva").style.display = "none"
+     document.getElementById("dva").style.backgroundColor = "green";} else document.getElementById("dva").style.backgroundColor = "#121212"
 
     if (player.prestigerewards[2] == 1) {document.getElementById("tri").style.display = "block"
-    document.getElementById("tri").style.backgroundColor = "green";}  else document.getElementById("tri").style.display = "none"
+    document.getElementById("tri").style.backgroundColor = "green";}  else document.getElementById("tri").style.backgroundColor = "#121212"
     if (player.prestigerewards[3] == 1) {document.getElementById("ctyri").style.display = "block"
-    document.getElementById("ctyri").style.backgroundColor = "green";} else document.getElementById("ctyri").style.display = "none"
+    document.getElementById("ctyri").style.backgroundColor = "green";} else document.getElementById("ctyri").style.backgroundColor = "#121212"
     if (player.prestigerewards[4] == 1) {document.getElementById("pet").style.display = "block"
-    document.getElementById("pet").style.backgroundColor = "green";} else document.getElementById("pet").style.display = "none"
+    document.getElementById("pet").style.backgroundColor = "green";} else document.getElementById("pet").style.backgroundColor = "#121212"
     if (player.prestigerewards[5] == 1) {document.getElementById("sest").style.display = "block"
-    document.getElementById("sest").style.backgroundColor = "green";} else document.getElementById("sest").style.display = "none"
+    document.getElementById("sest").style.backgroundColor = "green";} else document.getElementById("sest").style.backgroundColor = "#121212"
     if (player.prestigerewards[6] == 1) {document.getElementById("sedm").style.display = "block"
     document.getElementById("sedm").style.backgroundColor = "green";
-    document.getElementById("rebirthblock").style.display = "block"} else document.getElementById("sedm").style.display = "none"
-
-    if (player.rebirthed) document.getElementById("rebirthblock").style.display = "block"
+    document.getElementById("rebirthblock").style.display = "block"
     document.getElementById("rebirth").innerHTML = "Rebirth<br>Req: "+expo(rebirthprice, 2)+" points<br>Gain: "+expo(Math.pow(player.points/1e8, 0.5), 2)+" rebirth points";
-    document.getElementById("rebirthpoints").innerHTML = "Rebirth points: "+player.rebirthpoins;
+    document.getElementById("rebirthpoints").innerHTML = "Rebirth points: "+expo(player.rebirthpoins, 2);} else document.getElementById("sedm").style.backgroundColor = "#121212"
+
+    if (player.prestigerewards[7] == 1) {document.getElementById("osm").style.display = "block"
+    document.getElementById("osm").style.backgroundColor = "green";}  else document.getElementById("osm").style.backgroundColor = "#121212"
+
+    if (player.rebirthed) {document.getElementById("rebirthblock").style.display = "block"
+    document.getElementById("rupgrade1").style.display = "block"
+    document.getElementById("rupgrade2").style.display = "block"
+    document.getElementById("rebirth").innerHTML = "Rebirth<br>Req: "+expo(rebirthprice, 2)+" points<br>Gain: "+expo(Math.pow(player.points/1e8, 0.4), 2)+" rebirth points";
+    document.getElementById("rebirthpoints").innerHTML = "Rebirth points: "+expo(player.rebirthpoins, 2);}
+
+    if(player.rupgrades[0] == 1) document.getElementById("rupgrade1").style.backgroundColor = "green";
 }
 
 //----------------------==========================-----------------------
@@ -86,6 +96,8 @@ function pointgain() {
     
     if (player.prestigerewards[0]) x *= 3;
     if (player.prestigerewards[6]) x *= 4;
+    if (player.rupgrades[0]) x *= 10;
+    if (player.prestigerewards[7]) x *= Math.pow(1.1, player.prestige);
     if (player.prestigerewards[2]) x *= Math.log10(player.points+1)+1;
     document.getElementById("pointpersec").innerHTML = expo(x*100, 2)+"/sec";
     player.points += x;
@@ -120,6 +132,14 @@ function upgrade2() {
     update();
 }
 
+function rupgrade1() {
+    if(player.rebirthpoins >= 1 && player.rupgrades[0] == 0) {
+        player.rebirthpoins -= 1
+        player.rupgrades[0] = 1
+    }
+    update();
+}
+
 //----------------------==========================-----------------------
 //----------------------==========RESET LAYERS==========-----------------------
 //----------------------==========================-----------------------
@@ -135,6 +155,7 @@ function prestige() {
             upgrades: [0, 0],
             rebirthpoins: player.rebirthpoins,
             rebirthed: player.rebirthed,
+            rupgrades: player.rupgrades,
         };
         player.prestige++;
     }
@@ -146,19 +167,22 @@ function prestige() {
     if (player.prestige >= 5) player.prestigerewards[4] = 1;
     if (player.prestige >= 6) player.prestigerewards[5] = 1;
     if (player.prestige >= 7) player.prestigerewards[6] = 1;
+    if (player.prestige >= 8) player.prestigerewards[7] = 1;
 }   
 var rebirthprice = 1e8
 function rebirth() {
     if (player.points >= rebirthprice) {
+        player.rebirthpoins += Math.pow(player.points/1e8, 0.4)
         player = {
             points: 0,
             prestige: 0,
-            prestigerewards: [0, 0, 0, 0, 0, 0, 0],
+            prestigerewards: [0, 0, 0, 0, 0, 0, 0, 0],
             upgrades: [0, 0],
             rebirthpoins: player.rebirthpoins,
             rebirthed: true,
+            rupgrades: player.rupgrades,
         };
-        player.rebirthpoins += Math.pow(player.points/1e8, 0.5)
+        
     }
 }
 
@@ -171,10 +195,11 @@ function clearData() {
     player = {
         points: 0,
         prestige: 0,
-        prestigerewards: [0, 0, 0, 0, 0, 0, 0],
+        prestigerewards: [0, 0, 0, 0, 0, 0, 0, 0],
         upgrades: [0, 0],
         rebirthpoins: 0,
         rebirthed: false,
+        rupgrades: [0, 0],
     };
     location.reload();
     update();

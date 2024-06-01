@@ -9,20 +9,28 @@
 <body>
     <p id="points">0 points</p>
     <p id="pointpersec">0/sec</p>
+
     <div id="prestigeblock">
       <img id="prestigestar" src="image/prestigestar.png" alt="Prestige star image"><p id="prestigecount">Prestige: 0</p><img id="prestigestar2" src="image/prestigestar.png" alt="Prestige star image">
     <button onclick="prestige()" id="prestige">Prestige<br>Req: 10 points</button>
     </div>
+
     <ul id="prestigeupg">
       <li><button onclick="upgrade1()" id="upgrade1">Upgrade 1<br>+1/sec to point gain<br>Cost: 20 points</button></li>
       <p id="upg1eff">+0</p>
       <li><button onclick="upgrade2()" id="upgrade2">Upgrade 2<br>+1x to point gain<br>Cost: 50 points</button></li>
       <p id="upg2eff">+0x</p>
     </ul>
+
     <div id="rebirthblock">
       <img id="rebirthtriangle" src="image/rebirthtriangle.png" alt="Rebirth triangle image"><p id="rebirthpoints">Rebirth points: 0</p><img id="rebirthtriangle2" src="image/rebirthtriangle.png" alt="Rebirth triangle image">
     <button onclick="rebirth()" id="rebirth">Rebirth<br>Req: 1e8 points<br>Gain: 0 rebirth points</button>
     </div>
+
+    <ul id="rebirthupg">
+      <li><button onclick="rupgrade1()" id="rupgrade1">Rebirth upgrade 1<br>10x point gain<br>Cost: 1 rebirth point</button></li>
+      <li><button onclick="rupgrade2()" id="rupgrade2">Rebirth upgrade 2<br>10x points gain<br>Cost: 5 rebirth point</button></li>
+    </ul>
     <div id="prestigerewards"><p id="blabla">Prestige rewards</p>
         <table>
           <tr id="jedna">
@@ -46,10 +54,13 @@
           <tr id="sedm">
             <td>Prestige 7<br>Unlock rebirth and quadruple point gain</td>
           </tr>
+          <tr id="osm">
+            <td>Prestige 8<br>1.1x point gain each prestige</td>
+          </tr>
         </table>
       </div>
 
-    <a href="credits.html""><button id="credits">Credits</button></a>
+    <a href="credits.html"><button id="credits">Credits</button></a>
     <button onclick="clearData()" id="clear">HARD RESET</button>
     <script src="main.js" charset="utf-8" type="text/javascript"></script>
 </body>

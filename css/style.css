@@ -64,14 +64,18 @@ td {
     left: 7%;
 }
 
-#prestigeupg {
+ul {
     list-style: none;
+    padding: 0;
+}
+
+#prestigeupg {
     position: absolute;
-    left: 5.4%;
+    left: 7.5%;
     top: 13%;
 }
 
-#upgrade1, #upgrade2 {
+#upgrade1, #upgrade2, #rupgrade1, #rupgrade2 {
     display: none;
     width: 180px;
     height: 60px;
@@ -118,18 +122,20 @@ td {
     left: 154px;
 }
 #rebirthtriangle {
+    z-index: -1;
     width: 25px;
     height: 25px;
     position: absolute;
     top: 12px;
-    left: 10px;
+    left: 0px;
 }
 #rebirthtriangle2 {
+    z-index: -1;
     width: 25px;
     height: 25px;
     position: absolute;
     top: 12px;
-    left: 165px;
+    left: 175px;
 }
 
 #credits {
@@ -137,3 +143,10 @@ td {
     right: 91px;
     bottom: 0;
 }
+
+#rebirthupg {
+    position: absolute;
+    left: 27.5%;
+    top: 14%;
+}
+    
