@@ -75,7 +75,7 @@ ul {
     top: 13%;
 }
 
-#upgrade1, #upgrade2, #rupgrade1, #rupgrade2 {
+#upgrade1, #upgrade2, #rupgrade1, #rupgrade2, #rupgrade3 {
     display: none;
     width: 180px;
     height: 60px;
@@ -96,7 +96,7 @@ ul {
 }
 
 #rebirth {
-    width: 200px;
+    width: 250px;
     padding: 20px;
 }
 
@@ -135,7 +135,7 @@ ul {
     height: 25px;
     position: absolute;
     top: 12px;
-    left: 175px;
+    left: 225px;
 }
 
 #credits {
@@ -144,9 +144,13 @@ ul {
     bottom: 0;
 }
 
+#rupgrade2 {
+    height: 80px;
+}
+
 #rebirthupg {
     position: absolute;
-    left: 27.5%;
-    top: 14%;
+    left: 28.7%;
+    top: 15%;
 }
     

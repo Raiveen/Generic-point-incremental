@@ -5,11 +5,11 @@
 var player = {
     points: 0,
     prestige: 0,
-    prestigerewards: [0, 0, 0, 0, 0, 0, 0],
+    prestigerewards: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     upgrades: [0, 0],
     rebirthpoins: 0,
     rebirthed: false,
-    rupgrades: [0, 0],
+    rupgrades: [0, 0, 0],
 };
 
 //----------------------==========================-----------------------
@@ -25,12 +25,15 @@ function expo(x, f) {
   }
 
 function update() {
-    
+    if (player.rupgrades[2]) prestigepricediv = 500;
+    else prestigepricediv = 1;
     var prestige3boost = Math.log10(player.points+1)+1;
-    if (player.prestigerewards[5]) prestigeprice = 10 * Math.pow(1.5, 2.5*Math.pow(player.prestige, 1.5))
-    else prestigeprice = 10 * Math.pow(1.75, 2.5*Math.pow(player.prestige, 1.5))
-    upg1price = 20 + 20*player.upgrades[0]*Math.pow(5, 0.2*player.upgrades[0])
-    upg2price = 50 + 50*player.upgrades[1]*Math.pow(5, 0.5*player.upgrades[1])
+    if (player.prestigerewards[5]) prestigeprice = (10 * Math.pow(1.5, 2.5*Math.pow(player.prestige, 1.5))) / prestigepricediv;
+    else prestigeprice = (10 * Math.pow(1.75, 2.5*Math.pow(player.prestige, 1.5))) / prestigepricediv;
+    if (player.rupgrades[1]) upg1price = 20 + 20*player.upgrades[0]*Math.pow(4, 0.16*player.upgrades[0])
+        else upg1price = 20 + 20*player.upgrades[0]*Math.pow(5, 0.2*player.upgrades[0])
+    if (player.rupgrades[1]) upg2price = 50 + 50*player.upgrades[1]*Math.pow(4, 0.4*player.upgrades[1])
+        else upg2price = 50 + 50*player.upgrades[1]*Math.pow(5, 0.5*player.upgrades[1])
     document.getElementById("points").innerHTML = expo(player.points, 2) + " points";
     document.getElementById("prestigecount").innerHTML = "Prestige: " + player.prestige;
     document.getElementById("prestige").innerHTML = "Prestige<br>Req: "+expo(prestigeprice, 2)+" points";
@@ -39,44 +42,59 @@ function update() {
     if (player.prestigerewards[3]) document.getElementById("upg1eff").innerHTML = "+" +expo(player.upgrades[0]*prestige3boost, 2)+ " to point gain";
     else document.getElementById("upg1eff").innerHTML = "+" +expo(player.upgrades[0], 2)+ " to point gain";
     if (player.prestigerewards[4]) document.getElementById("upg2eff").innerHTML = "+" +Math.pow(player.upgrades[1], 2)+ "x to point gain";
-    else document.getElementById("upg2eff").innerHTML = "+" +expo(player.upgrades[1], 2)+ "x to point gain";
+    else document.getElementById("upg2eff").innerHTML = "+" +player.upgrades[1]+ "x to point gain";
     document.getElementById("prestige3boost").innerHTML = "Prestige 3<br>Points boost themselves: "+expo(prestige3boost, 2)+"x";
+
+    function setRewardDisplay(id, condition) {
+        if (condition) {
+            document.getElementById(id).style.display = "block";
+            document.getElementById(id).style.backgroundColor = "green";
+        }  else {
+            document.getElementById(id).style.backgroundColor = "grey";
+        }
+        document.getElementById(id).style.display = "block";
+        document.getElementById("prestigerewards").style.display = "block";
+        if (player.rebirthed) { 
+        document.getElementById("upgrade1").style.display = "block"
+        document.getElementById("upgrade2").style.display = "block"
+        document.getElementById("upg1eff").style.display = "block"
+        document.getElementById("upg2eff").style.display = "block"}
+        
+    }
+
+    setRewardDisplay("jedna", player.prestigerewards[0]);
+    setRewardDisplay("dva", player.prestigerewards[1]);
+    setRewardDisplay("tri", player.prestigerewards[2]);
+    setRewardDisplay("ctyri", player.prestigerewards[3]);
+    setRewardDisplay("pet", player.prestigerewards[4]);
+    setRewardDisplay("sest", player.prestigerewards[5]);
+    setRewardDisplay("sedm", player.prestigerewards[6]);
+    setRewardDisplay("osm", player.prestigerewards[7]);
+    setRewardDisplay("devet", player.prestigerewards[8]);
+    setRewardDisplay("deset", player.prestigerewards[9]);
+    setRewardDisplay("dvanact", player.prestigerewards[10]);
 
     if (player.prestigerewards[0] == 1) document.getElementById("prestigerewards").style.display = "block";
 
-    if (player.prestigerewards[0] == 1) {document.getElementById("jedna").style.display = "block"
-     document.getElementById("jedna").style.backgroundColor = "green";} else document.getElementById("jedna").style.backgroundColor = "#121212"
-    if (player.prestigerewards[1] == 1) {document.getElementById("dva").style.display = "block"
-    document.getElementById("upgrade1").style.display = "block"
+    if (player.prestigerewards[1] == 1) {document.getElementById("upgrade1").style.display = "block"
     document.getElementById("upgrade2").style.display = "block"
     document.getElementById("upg1eff").style.display = "block"
-    document.getElementById("upg2eff").style.display = "block"
-     document.getElementById("dva").style.backgroundColor = "green";} else document.getElementById("dva").style.backgroundColor = "#121212"
-
-    if (player.prestigerewards[2] == 1) {document.getElementById("tri").style.display = "block"
-    document.getElementById("tri").style.backgroundColor = "green";}  else document.getElementById("tri").style.backgroundColor = "#121212"
-    if (player.prestigerewards[3] == 1) {document.getElementById("ctyri").style.display = "block"
-    document.getElementById("ctyri").style.backgroundColor = "green";} else document.getElementById("ctyri").style.backgroundColor = "#121212"
-    if (player.prestigerewards[4] == 1) {document.getElementById("pet").style.display = "block"
-    document.getElementById("pet").style.backgroundColor = "green";} else document.getElementById("pet").style.backgroundColor = "#121212"
-    if (player.prestigerewards[5] == 1) {document.getElementById("sest").style.display = "block"
-    document.getElementById("sest").style.backgroundColor = "green";} else document.getElementById("sest").style.backgroundColor = "#121212"
-    if (player.prestigerewards[6] == 1) {document.getElementById("sedm").style.display = "block"
-    document.getElementById("sedm").style.backgroundColor = "green";
-    document.getElementById("rebirthblock").style.display = "block"
+    document.getElementById("upg2eff").style.display = "block"}
+    
+    if (player.prestigerewards[6] == 1) {document.getElementById("rebirthblock").style.display = "block"
     document.getElementById("rebirth").innerHTML = "Rebirth<br>Req: "+expo(rebirthprice, 2)+" points<br>Gain: "+expo(Math.pow(player.points/1e8, 0.5), 2)+" rebirth points";
-    document.getElementById("rebirthpoints").innerHTML = "Rebirth points: "+expo(player.rebirthpoins, 2);} else document.getElementById("sedm").style.backgroundColor = "#121212"
-
-    if (player.prestigerewards[7] == 1) {document.getElementById("osm").style.display = "block"
-    document.getElementById("osm").style.backgroundColor = "green";}  else document.getElementById("osm").style.backgroundColor = "#121212"
+    document.getElementById("rebirthpoints").innerHTML = "Rebirth points: "+expo(player.rebirthpoins, 2);}
 
     if (player.rebirthed) {document.getElementById("rebirthblock").style.display = "block"
     document.getElementById("rupgrade1").style.display = "block"
     document.getElementById("rupgrade2").style.display = "block"
+    document.getElementById("rupgrade3").style.display = "block"
     document.getElementById("rebirth").innerHTML = "Rebirth<br>Req: "+expo(rebirthprice, 2)+" points<br>Gain: "+expo(Math.pow(player.points/1e8, 0.4), 2)+" rebirth points";
     document.getElementById("rebirthpoints").innerHTML = "Rebirth points: "+expo(player.rebirthpoins, 2);}
 
     if(player.rupgrades[0] == 1) document.getElementById("rupgrade1").style.backgroundColor = "green";
+    if(player.rupgrades[1] == 1) document.getElementById("rupgrade2").style.backgroundColor = "green";
+    if(player.rupgrades[2] == 1) document.getElementById("rupgrade3").style.backgroundColor = "green";
 }
 
 //----------------------==========================-----------------------
@@ -97,7 +115,20 @@ function pointgain() {
     if (player.prestigerewards[0]) x *= 3;
     if (player.prestigerewards[6]) x *= 4;
     if (player.rupgrades[0]) x *= 10;
-    if (player.prestigerewards[7]) x *= Math.pow(1.1, player.prestige);
+
+    if (player.prestige >= 8) presige7mult = 1
+    if (player.prestige >= 9) presige7mult = 2
+    if (player.prestige >= 10) presige7mult = 3
+
+    switch (presige7mult) {
+        case 3: x *= Math.pow(1.6, player.prestige);
+        break;
+        case 2: x *= Math.pow(1.4, player.prestige);
+        break;
+        case 1: x *= Math.pow(1.2, player.prestige);
+        break;
+    }
+
     if (player.prestigerewards[2]) x *= Math.log10(player.points+1)+1;
     document.getElementById("pointpersec").innerHTML = expo(x*100, 2)+"/sec";
     player.points += x;
@@ -113,7 +144,8 @@ var mainGameLoop = window.setInterval(function() {
 //----------------------==========================-----------------------
 var upg1price = 20
 function upgrade1() {
-    upg1price = 20 + 20*player.upgrades[0]*Math.pow(5, 0.2*player.upgrades[0])
+    if (player.rupgrades[1]) upg1price = 20 + 20*player.upgrades[0]*Math.pow(4, 0.16*player.upgrades[0])
+    else upg1price = 20 + 20*player.upgrades[0]*Math.pow(5, 0.2*player.upgrades[0])
     if (player.points >= upg1price) {
         player.points -= upg1price
         player.upgrades[0]++;
@@ -124,7 +156,8 @@ function upgrade1() {
 
 var upg2price = 50
 function upgrade2() {
-    upg2price = 50 + 50*player.upgrades[1]*Math.pow(5, 0.5*player.upgrades[1])
+    if (player.rupgrades[1]) upg2price = 50 + 50*player.upgrades[1]*Math.pow(4, 0.4*player.upgrades[1])
+    else upg2price = 50 + 50*player.upgrades[1]*Math.pow(5, 0.5*player.upgrades[1])
     if (player.points >= upg2price) {
         player.points -= upg2price
         player.upgrades[1]++
@@ -140,13 +173,33 @@ function rupgrade1() {
     update();
 }
 
+function rupgrade2() {
+    if(player.rebirthpoins >= 30 && player.rupgrades[1] == 0) {
+        player.rebirthpoins -= 30
+        player.rupgrades[1] = 1
+    }
+    update();
+}
+
+function rupgrade3() {
+    if(player.rebirthpoins >= 150 && player.rupgrades[2] == 0) {
+        player.rebirthpoins -= 150
+        player.rupgrades[2] = 1
+    }
+    update();
+}
+
 //----------------------==========================-----------------------
 //----------------------==========RESET LAYERS==========-----------------------
 //----------------------==========================-----------------------
 var prestigeprice = 10
+var presige7mult = 0
+var prestigepricediv = 1
 function prestige() {
-    if (player.prestigerewards[5]) prestigeprice = 10 * Math.pow(1.5, 2.5*Math.pow(player.prestige, 1.5))
-    else prestigeprice = 10 * Math.pow(1.75, 2.5*Math.pow(player.prestige, 1.5))
+    if (player.rupgrades[2]) prestigepricediv = 500;
+    else prestigepricediv = 1;
+    if (player.prestigerewards[5]) prestigeprice = (10 * Math.pow(1.5, 2.5*Math.pow(player.prestige, 1.5))) / prestigepricediv;
+    else prestigeprice = (10 * Math.pow(1.75, 2.5*Math.pow(player.prestige, 1.5))) / prestigepricediv;
     if (player.points >= prestigeprice) {
         player = {
             points: 0,
@@ -167,7 +220,9 @@ function prestige() {
     if (player.prestige >= 5) player.prestigerewards[4] = 1;
     if (player.prestige >= 6) player.prestigerewards[5] = 1;
     if (player.prestige >= 7) player.prestigerewards[6] = 1;
-    if (player.prestige >= 8) player.prestigerewards[7] = 1;
+    if (player.prestige >= 8) {player.prestigerewards[7] = 1; presige7mult = 1}
+    if (player.prestige >= 9) {player.prestigerewards[8] = 1; presige7mult = 2}
+    if (player.prestige >= 10) {player.prestigerewards[9] = 1; presige7mult = 3}
 }   
 var rebirthprice = 1e8
 function rebirth() {
