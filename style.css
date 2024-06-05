@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body, button {
+    color: white;
+    user-select: none;
+    font-family: Roboto;
+    background-color: #121212;
+}
+
+#prestige {
+    width: 200px;
+    padding: 20px;
+}
+
+div {
+    width: fit-content;
+}
+
+#prestigecount, #rebirthpoints {
+    text-align: center;
+}
+
+button:hover {
+    background-color: rgb(71, 71, 71);
+}
+
+#clear {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+}
+
+tr {
+    display: none;
+    text-align: center;
+}
+
+#prestigerewards {
+    display: none;
+    position: fixed;
+    right: 0;
+    top: 0;
+}
+
+tr {
+    font-size:large;
+    background-color: rgb(113, 113, 113);
+    border: 5px solid rgb(255, 255, 255);
+    border-collapse: collapse;
+    height: 50px;
+    width: 400px;
+}
+td, #blabla {
+    text-align: center;
+    
+}
+td {
+    width: 410px;
+}
+
+#prestigeblock {
+    position: fixed;
+    top: 0px;
+    left: 7%;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+#prestigeupg {
+    position: absolute;
+    left: 7.5%;
+    top: 13%;
+}
+
+#upgrade1, #upgrade2, #rupgrade1, #rupgrade2, #rupgrade3, #upgrade3, #rupgrade4 {
+    display: none;
+    width: 180px;
+    height: 60px;
+}
+
+#upg1eff {
+    display: none;
+    position: fixed;
+    left: 330px;
+    top: 145px;
+}
+
+#upg2eff {
+    display: none;
+    position: fixed;
+    left: 330px;
+    top: 203px;
+}
+
+#rebirth {
+    width: 250px;
+    padding: 20px;
+}
+
+#rebirthblock {
+    display: none;
+    position: fixed;
+    top: 0px;
+    left: 27%;
+}
+
+#prestigestar {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 12px;
+    left: 20px;
+}
+#prestigestar2 {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 12px;
+    left: 154px;
+}
+#rebirthtriangle {
+    z-index: -1;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 12px;
+    left: 0px;
+}
+#rebirthtriangle2 {
+    z-index: -1;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 12px;
+    left: 225px;
+}
+
+#credits {
+    position: fixed;
+    right: 91px;
+    bottom: 0;
+}
+
+#rupgrade2, #rupgrade3, #rupgrade4 {
+    height: 80px;
+}
+
+#rebirthupg {
+    position: absolute;
+    left: 28.7%;
+    top: 15%;
+}
+    
+#autobuy {
+    background-color: green;
+    display: none;
+    position: fixed;
+    left: 330px;
+    top: 275px;
+}
+
+#rupg4eff {
+    display: none;
+    position: fixed;
+    left: 500px;
+    top: 203px;
+}

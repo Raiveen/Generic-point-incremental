@@ -20,6 +20,8 @@
       <p id="upg1eff">+0</p>
       <li><button onclick="upgrade2()" id="upgrade2">Upgrade 2<br>+1x to point gain<br>Cost: 50 points</button></li>
       <p id="upg2eff">+0x</p>
+      <li><button onclick="upgrade3()" id="upgrade3">Upgrade 3<br>Autobuy first 2 upgrades<br>Cost: 1 rebirth points</button></li>
+      <button onclick="autobuyonoff = !autobuyonoff" id="autobuy">Autobuy<br>toggle</button>
     </ul>
 
     <div id="rebirthblock">
@@ -30,7 +32,9 @@
     <ul id="rebirthupg">
       <li><button onclick="rupgrade1()" id="rupgrade1">Rebirth upgrade 1<br>10x point gain<br>Cost: 1 rebirth point</button></li>
       <li><button onclick="rupgrade2()" id="rupgrade2">Rebirth upgrade 2<br>Reduce scaling of first 2 upgrades by 25%<br>Cost: 30 rebirth points</button></li>
-      <li><button onclick="rupgrade3()" id="rupgrade3">Rebirth upgrade 3<br>Prestige is 500x cheaper<br>Cost: 150 rebirth points</button></li>
+      <li><button onclick="rupgrade3()" id="rupgrade3">Rebirth upgrade 3<br>Prestige is 500x cheaper and 2x rebirth points<br>Cost: 150 rebirth points</button></li>
+      <li><button onclick="rupgrade4()" id="rupgrade4">Rebirth upgrade 4<br>First 2 upgrades are cheaper based on prestige<br>Cost: 700 rebirth points</button></li>
+      <p id="rupg4eff">x0 cheaper</p>
     </ul>
     <div id="prestigerewards"><p id="blabla">Prestige rewards</p>
         <table>
@@ -56,7 +60,7 @@
             <td>Prestige 7<br>Unlock rebirth and quadruple point gain</td>
           </tr>
           <tr id="osm">
-            <td>Prestige 8<br>1.2x point gain each prestige</td>
+            <td>Prestige 8<br>1.3x point gain each prestige</td>
           </tr>
           <tr id="devet">
             <td>Prestige 9<br>Increase prestige 8 by +0.3x</td>
